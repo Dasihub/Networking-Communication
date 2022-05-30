@@ -8,7 +8,7 @@ class WorkingController {
             res.status(200).json({
                 message: 'Данные успешно получены!',
                 type: 'success',
-                data: rows,
+                data: rows
             })
         } catch (e) {
             res.status(501).json({
