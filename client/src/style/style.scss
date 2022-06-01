@@ -1,9 +1,32 @@
+$border: 5px;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-div {
-  color: lime
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #09111f;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Designing for scroll-bar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #1D94E9;
 }

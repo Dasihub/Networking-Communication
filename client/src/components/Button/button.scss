@@ -1,0 +1,19 @@
+.btn {
+  border: none;
+  font-size: 18px;
+  background-color: #1D94E9;
+  color: white;
+  width: 100%;
+  min-height: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:active {
+    transform: translateY(2px);
+  }
+}

@@ -1,0 +1,32 @@
+.item_auth {
+  height: calc(96vh - 62px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container_auth {
+    border: 2px solid white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    width: 500px;
+
+    h1 {
+      color: white;
+      text-align: center;
+    }
+
+    input {
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-top: 20px;
+      color: white;
+      margin-left: 2px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

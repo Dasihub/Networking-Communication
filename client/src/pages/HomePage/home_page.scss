@@ -1,0 +1,61 @@
+@mixin flex($position) {
+  display: flex;
+  justify-content: $position;
+}
+
+.item_card {
+  @include flex(center);
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1600px;
+  margin: 20px 0;
+  width: 100%;
+  //flex-wrap: wrap;
+
+  .container_card {
+    width: 100%;
+    border: 1px solid;
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+
+    .txt {
+      font-size: 14px;
+      color: #918f8d;
+      margin-top: 20px;
+    }
+
+    .container_icon {
+      @include flex(space-around);
+      margin-top: 20px;
+
+      i {
+        font-size: 23px;
+        cursor: pointer;
+
+        &.bi-trash {
+          color: red;
+        }
+      }
+    }
+  }
+}
+
+.plus {
+  @include flex(center);
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  bottom: 50px;
+  cursor: pointer;
+  transform: translateX(-50%);
+  background-color: white;
+  font-size: 30px;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+
+  i {
+    color: black;
+  }
+}

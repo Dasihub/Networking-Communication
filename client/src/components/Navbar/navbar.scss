@@ -1,0 +1,28 @@
+.container_navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding: 10px 14px;
+
+  .user {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #1D94E9;
+    font-weight: bold;
+    gap: 12px;
+    font-size: 19px;
+
+    img {
+      width: 40px;
+    }
+  }
+
+}

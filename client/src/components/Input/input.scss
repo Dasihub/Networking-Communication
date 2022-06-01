@@ -1,0 +1,28 @@
+$font: 'Montserrat', sans-serif;
+
+.input {
+  border: 1px solid white;
+  padding-left: 10px;
+  font-size: 17px;
+  height: 50px;
+  border-radius: 10px;
+  outline-color: white;
+  caret-color: #ffffff;
+  background-color: #0d1e2a;
+  color: white;
+  width: 100%;
+  font-family: $font;
+  margin-top: 3px;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.32);
+  }
+}
+
+.label {
+  color: white;
+  font-family: $font;
+  padding-left: 2px;
+  font-weight: 500;
+  font-size: 18px;
+}
