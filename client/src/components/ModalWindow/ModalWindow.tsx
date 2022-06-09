@@ -5,13 +5,13 @@ import './modal_window.scss'
 type working = {
     title: string
     description: string
-    link: string
+    link_url: string
 }
 
 interface IWorking {
     title: string
     description: string
-    link: string
+    link_url: string
     id: number
 }
 
@@ -19,18 +19,25 @@ interface IProps {
     isUpdateAndAdd: {type: boolean, id: number | null}
     working: IWorking[]
     setShowModal: (pre: boolean) => void
+    insertAndUpdateApi: (form: working) => Promise<void>
+    loader: boolean
 }
 
-const ModalWindow: React.FC<IProps> = ({isUpdateAndAdd, working, setShowModal}) => {
+const ModalWindow: React.FC<IProps> = ({isUpdateAndAdd, working, setShowModal, insertAndUpdateApi, loader}) => {
     const [form, setForm] = React.useState<working>({
         title: '',
         description: '',
-        link: ''
+        link_url: ''
     })
     const [animation, setAnimation] = React.useState<boolean>(false)
 
     const change = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setForm({...form, [e.target.name]: e.target.value})
+    }
+
+    const click = (e: React.FormEvent) => {
+        e.preventDefault()
+        insertAndUpdateApi ? insertAndUpdateApi(form) : null
     }
 
     React.useEffect(() => {
@@ -41,7 +48,7 @@ const ModalWindow: React.FC<IProps> = ({isUpdateAndAdd, working, setShowModal}) 
                     setForm({
                         title: iWorking.title,
                         description: iWorking.description,
-                        link: iWorking.link
+                        link_url: iWorking.link_url
                     })
                 }
             }
@@ -84,16 +91,21 @@ const ModalWindow: React.FC<IProps> = ({isUpdateAndAdd, working, setShowModal}) 
                     </div>
                     <div style={{marginTop: '10px'}}>
                         <Input
-                            value={form.link}
+                            value={form.link_url}
                             change={change}
-                            id={'link'}
-                            name={'link'}
+                            id={'link_url'}
+                            name={'link_url'}
                             label={'Ссылка'}
                             type={'text'}
                         />
                     </div>
                     <div style={{marginTop: '20px', display: 'flex', justifyContent: 'center'}}>
-                        <Button value={isUpdateAndAdd ? 'Изменить' : 'Добавить'} width={'200px'} click={() => {}}/>
+                        <Button
+                            value={isUpdateAndAdd ? 'Изменить' : 'Добавить'}
+                            width={'200px'}
+                            click={click}
+                            loader={loader}
+                        />
                     </div>
                 </div>
             </form>

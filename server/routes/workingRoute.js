@@ -4,9 +4,9 @@ const {authMiddleware} = require('../middleware/authMiddleware')
 
 const router = Router()
 
-router.get('/working/:id_user', authMiddleware, WorkingController.getWorking)
-router.delete('/working/:id_working', authMiddleware, WorkingController.deleteWorking)
-router.post('/working', authMiddleware, WorkingController.addWorking)
-router.put('/working', authMiddleware, WorkingController.editWorking)
+router.get('/working/:id_user', WorkingController.getWorking)
+router.delete('/working/:id_working', WorkingController.deleteWorking)
+router.post('/working', WorkingController.addWorking)
+router.put('/working', WorkingController.editWorking)
 
 module.exports = router

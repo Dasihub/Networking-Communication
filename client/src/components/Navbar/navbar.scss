@@ -4,6 +4,9 @@
   align-items: center;
   background-color: black;
   padding: 10px 14px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 
   .user {
     color: white;

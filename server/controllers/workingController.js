@@ -4,17 +4,20 @@ class WorkingController {
     async getWorking(req, res) {
         try {
             const {id_user} = req.params
+            console.log(id_user)
             const {rows} = await db.query(`select * from working where id_user=${id_user}`)
             res.status(200).json({
                 message: 'Данные успешно получены!',
                 type: 'success',
-                data: rows
+                data: rows,
+                auth: true
             })
         } catch (e) {
             res.status(501).json({
                 message: 'Ошибка в сервере!',
                 type: 'error',
                 data: [],
+                auth: false
             })
         }
     }
@@ -27,12 +30,14 @@ class WorkingController {
                 message: 'Данные успешно созданы!',
                 type: 'success',
                 data: rows,
+                auth: true
             })
         } catch (e) {
             res.status(501).json({
                 message: 'Ошибка в сервере!',
                 type: 'error',
                 data: [],
+                auth: false
             })
         }
     }
@@ -45,12 +50,14 @@ class WorkingController {
                 message: 'Данные успешно изменено!',
                 type: 'success',
                 data: rows,
+                auth: true
             })
         } catch (e) {
             res.status(501).json({
                 message: 'Ошибка в сервере!',
                 type: 'error',
                 data: [],
+                auth: false
             })
         }
     }
@@ -63,12 +70,14 @@ class WorkingController {
                 message: 'Данные успешно удалено!',
                 type: 'success',
                 data: rows,
+                auth: true
             })
         } catch (e) {
             res.status(501).json({
                 message: 'Ошибка в сервере!',
                 type: 'error',
                 data: [],
+                auth: false
             })
         }
     }

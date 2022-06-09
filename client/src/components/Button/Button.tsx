@@ -4,7 +4,7 @@ import './button.scss'
 
 interface IProps {
     value: string
-    click: () => void
+    click: (e: React.FormEvent) => void
     loader?: boolean
     disabled?: boolean
     width?: string

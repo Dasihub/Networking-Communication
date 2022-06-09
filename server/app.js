@@ -14,10 +14,9 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.resolve(__dirname, 'public')))
 app.use(cookieParser())
 app.use(logger('dev'))
-// app.use(cors({origin: '*'}))
+app.use(cors({origin: '*'}))
 
 app.use('/api', require('./routes/index'))
 
 const server = http.createServer(app)
-
 server.listen(port, () => console.log(`Start server in port ${port}...`))
