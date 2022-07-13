@@ -32,7 +32,7 @@ const HomePage: React.FC = () => {
 
     const changeModal = (type: boolean, id: number | null): void => {
         setShowModal(true)
-        if (isUpdateAndAdd) {
+        if (isUpdateAndAdd.type) {
             return setIsUpdateAndAdd({type, id})
         }
         setIsUpdateAndAdd({type, id})
@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
 
     const getWorking = async (): Promise<void> => {
         try {
-            const res: Res = await request(`/working/${1}`)
+            const res: Res = await request(`/working/${user?.id}`)
             setWorking(res.data)
             if (!res.auth) {
                 setAuth ? setAuth(res.auth) : null
@@ -54,7 +54,7 @@ const HomePage: React.FC = () => {
             const res: Res = await request(
                 '/working',
                 isUpdateAndAdd.type ? 'PUT' : 'POST',
-                isUpdateAndAdd.type ? {title: form.title, description: form.description, link_url: form.link_url, id_working: isUpdateAndAdd.id} : {title: form.title, description: form.description, link_url: form.link_url, id_user: 1}
+                isUpdateAndAdd.type ? {title: form.title, description: form.description, link_url: form.link_url, id_working: isUpdateAndAdd.id} : {title: form.title, description: form.description, link_url: form.link_url, id_user: user?.id}
             )
             message(res.message, res.type)
             setIsUpdateAndAdd({
@@ -70,8 +70,11 @@ const HomePage: React.FC = () => {
         }
     }
 
-    const deleteApi = async () => {
+    const deleteApi = async (id_working: number) => {
         try {
+            const res: IMessage = await request(`/working/${id_working}`, 'DELETE')
+            getWorking()
+            message(res.message, res.type)
         } catch (e) {
         }
     }
@@ -101,7 +104,7 @@ const HomePage: React.FC = () => {
                                 <div><a href={item.link_url} target={'_blank'}>{item.link_url}</a></div>
                                 <div className={'container_icon'}>
                                     <div><i onClick={changeModal.bind(null, true, item.id)} title={'Изменить'} className={"bi bi-pencil-square"}/></div>
-                                    <div><i title={'Удалить'} className="bi bi-trash"/></div>
+                                    <div><i onClick={deleteApi.bind(null, item.id)} title={'Удалить'} className="bi bi-trash"/></div>
                                 </div>
                             </div>
                         )) :
@@ -109,8 +112,8 @@ const HomePage: React.FC = () => {
                     }
                 </div>
             </div>
-            <div className={'plus'}>
-                <i onClick={changeModal.bind(null, false, null)} className={"bi bi-plus-lg"}/>
+            <div onClick={changeModal.bind(null, false, null)} className={'plus'}>
+                <i className={"bi bi-plus-lg"}/>
             </div>
             {
                 showModal &&

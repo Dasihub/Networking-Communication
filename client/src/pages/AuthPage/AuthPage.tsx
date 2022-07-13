@@ -25,12 +25,13 @@ const AuthPage: React.FC = () => {
         login: '',
         password: ''
     })
+    const [showPassword, setShowPassword] = React.useState<boolean>(false)
 
     const change = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({...form, [e.target.name]: e.target.value})
     }
 
-    const login = async (e: React.FormEvent): Promise<void> => {
+    const login = React.useCallback(async (e: React.FormEvent): Promise<void> => {
         try {
             e.preventDefault()
             if (form.login.length && form.password.length) {
@@ -46,7 +47,7 @@ const AuthPage: React.FC = () => {
             message('Заполните все поля!', 'warning')
         } catch (e) {
         }
-    }
+    }, [form])
 
     return (
         <div className="item_auth">
@@ -64,16 +65,21 @@ const AuthPage: React.FC = () => {
                             placeholder={'Логин'}
                         />
                     </div>
-                    <div>
+                    <div className='eye_container'>
                         <Input
                             value={form.password}
                             change={change}
                             id={'password'}
                             name={'password'}
-                            type={'password'}
+                            type={showPassword ? 'text' : 'password'}
                             placeholder={'Пароль'}
                             label={'Пароль'}
                         />
+                        {
+                            showPassword ?
+                                <i className="bi bi-eye-fill" onClick={setShowPassword.bind(null, false)}/> :
+                                <i className="bi bi-eye-slash-fill" onClick={setShowPassword.bind(null, true)}/>
+                        }
                     </div>
                     <Button
                         type={'submit'}

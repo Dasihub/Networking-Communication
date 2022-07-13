@@ -64,7 +64,7 @@ const ModalWindow: React.FC<IProps> = ({isUpdateAndAdd, working, setShowModal, i
                     className={'add_form'}
                 >
                     <div className="head_modal">
-                        <h1>Добавить</h1>
+                        <h1>{isUpdateAndAdd.type ? 'Изменить' : 'Добавить'}</h1>
                         <div>
                             <i onClick={setShowModal.bind(null, false)} className="bi bi-x-lg"/>
                         </div>
@@ -101,7 +101,7 @@ const ModalWindow: React.FC<IProps> = ({isUpdateAndAdd, working, setShowModal, i
                     </div>
                     <div style={{marginTop: '20px', display: 'flex', justifyContent: 'center'}}>
                         <Button
-                            value={isUpdateAndAdd ? 'Изменить' : 'Добавить'}
+                            value={isUpdateAndAdd.type ? 'Изменить' : 'Добавить'}
                             width={'200px'}
                             click={click}
                             loader={loader}

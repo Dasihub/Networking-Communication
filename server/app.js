@@ -18,5 +18,7 @@ app.use(cors({origin: '*'}))
 
 app.use('/api', require('./routes/index'))
 
+app.get('*', (req, res) => res.sendFile('index.html', {root: path.resolve(__dirname, 'public')}))
+
 const server = http.createServer(app)
 server.listen(port, () => console.log(`Start server in port ${port}...`))

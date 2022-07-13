@@ -2,6 +2,7 @@ import React from "react";
 import {useMessage} from "./useMessage";
 
 const basesUrl = 'http://localhost:5000/api'
+// const basesUrl = '/api'
 
 export const useHttp = () => {
     const message = useMessage()

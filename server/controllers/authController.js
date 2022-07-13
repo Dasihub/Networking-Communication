@@ -81,7 +81,7 @@ class AuthController {
         try {
             const {token} = req.cookies
             if (!token) {
-                res.status(200).json({
+                return res.status(200).json({
                     message: 'Вы еще не авторизованы!',
                     type: 'info',
                     data: [],
@@ -91,7 +91,7 @@ class AuthController {
             const decryptToken = jwt.verify(token, process.env.JWT)
             res.status(200).json({
                 message: 'Вы авторизованы!',
-                type: 'error',
+                type: 'info',
                 data: [{
                     name: decryptToken.name,
                     id: decryptToken.id,

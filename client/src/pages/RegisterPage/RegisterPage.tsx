@@ -27,6 +27,10 @@ const RegisterPage: React.FC = () => {
         password: '',
         password_2: ''
     })
+    const [showPassword, setShowPassword] = React.useState<{password_1: boolean, password_2: boolean}>({
+        password_1: false,
+        password_2: false
+    })
 
     const change = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({...form, [e.target.name]: e.target.value})
@@ -48,6 +52,10 @@ const RegisterPage: React.FC = () => {
             message('Заполните все поля!', 'warning')
         } catch (e) {
         }
+    }
+
+    const changeShowPassword = (password: string, isShow: boolean) => {
+        setShowPassword({...showPassword, [password]: isShow})
     }
 
     return (
@@ -77,27 +85,37 @@ const RegisterPage: React.FC = () => {
                             label={'Логин'}
                         />
                     </div>
-                    <div>
+                    <div className='eye_container'>
                         <Input
                             value={form.password}
                             change={change}
                             id={'password'}
                             name={'password'}
-                            type={'password'}
+                            type={showPassword.password_1 ? 'text' : 'password'}
                             placeholder={'Пароль'}
                             label={'Пароль'}
                         />
+                        {
+                            showPassword.password_1 ?
+                                <i className="bi bi-eye-fill" onClick={changeShowPassword.bind(null, 'password_1', false)}/> :
+                                <i className="bi bi-eye-slash-fill" onClick={changeShowPassword.bind(null, 'password_1', true)}/>
+                        }
                     </div>
-                    <div>
+                    <div className='eye_container'>
                         <Input
                             value={form.password_2}
                             change={change}
                             id={'password_2'}
                             name={'password_2'}
-                            type={'password'}
+                            type={showPassword.password_2 ? 'text' : 'password'}
                             placeholder={'Повторите пароль'}
                             label={'Повторите пароль'}
                         />
+                        {
+                            showPassword.password_2 ?
+                                <i className="bi bi-eye-fill" onClick={changeShowPassword.bind(null, 'password_2', false)}/> :
+                                <i className="bi bi-eye-slash-fill" onClick={changeShowPassword.bind(null, 'password_2', true)}/>
+                        }
                     </div>
                     <Button
                         type={'submit'}
